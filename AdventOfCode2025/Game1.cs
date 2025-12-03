@@ -1,4 +1,5 @@
 ﻿using AdventOfCode2025.Challenges.Day1;
+using AdventOfCode2025.Challenges.Day2;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -17,13 +18,23 @@ namespace AdventOfCode2025
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private KeyboardStateService _keyboard;
+        private static bool _isPaused;
 
         private readonly IReadOnlyList<Func<Scene>> _scenes = [
-            () => new SecretEntranceExample(),
+            () => new GiftShopPart2(),
+            () => new GiftShopPart2Example(),
+            () => new GiftShop(),
+            () => new GiftShopExample(),
             () => new SecretEntrance(),
+            () => new SecretEntranceExample(),
         ];
         private int _currentSceneIndex;
         private Scene _currentScene;
+
+        public static void TogglePause() 
+        {
+            _isPaused = !_isPaused;
+        }
 
         public Game1()
         {
@@ -35,6 +46,7 @@ namespace AdventOfCode2025
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             IsFixedTimeStep = false;
+            TargetElapsedTime = TimeSpan.FromMilliseconds(1);
         }
 
         protected override void Initialize()
@@ -61,12 +73,19 @@ namespace AdventOfCode2025
                 _currentScene = _scenes[_currentSceneIndex]();
                 _currentScene.Initialize(Content, GraphicsDevice);
             }
+            if (_keyboard.IsKeyClicked(Keys.Enter))
+            {
+                _isPaused = !_isPaused;
+            }
             if (_keyboard.AreKeysClicked(Keys.LeftAlt, Keys.Enter)) 
             {
                 _graphics.ToggleFullScreen();
             }
 
-            _currentScene.Update(gameTime);
+            if (!_isPaused)
+            {
+                _currentScene.Update(gameTime);
+            }
 
             base.Update(gameTime);
         }

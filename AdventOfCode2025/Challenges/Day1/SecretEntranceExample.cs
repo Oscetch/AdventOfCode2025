@@ -39,7 +39,6 @@ L82";
         private SpriteFont _font;
         private Texture2D _pointer;
         private Texture2D _centerDot;
-        private bool _isPaused;
         private KeyboardStateService _keyboard;
         private readonly Dictionary<int, int> _distributionMap = [];
         private int _maxDistribution;
@@ -212,10 +211,6 @@ L82";
 
         public override void Update(GameTime gameTime)
         {
-            if (_keyboard.IsKeyClicked(Keys.Enter))
-            {
-                _isPaused = !_isPaused;
-            }
             if (_keyboard.IsKeyClicked(Keys.Right)) 
             {
                 Next();
@@ -236,7 +231,6 @@ L82";
             {
                 SetToIndex(0);
             }
-            if (_isPaused) return;
             _delay.Update(gameTime);
             _pointerColor = Color.Lerp(Color.Yellow, Color.Purple, (float)(_delay.ElapsedTime / _delay.TargetTime));
             _centerDotColor = Color.Lerp(Color.Purple, Color.Blue, (float)Math.Sin(gameTime.TotalGameTime.TotalSeconds));

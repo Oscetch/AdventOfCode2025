@@ -20,3 +20,17 @@
 /processorParam:TextureFormat=Compressed
 /build:Font.spritefont
 
+#begin Science.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Science.spritefont
+
+#begin VT323.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:VT323.spritefont
+
