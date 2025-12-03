@@ -1,5 +1,6 @@
 ﻿using AdventOfCode2025.Challenges.Day1;
 using AdventOfCode2025.Challenges.Day2;
+using AdventOfCode2025.Challenges.Day3;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -21,6 +22,9 @@ namespace AdventOfCode2025
         private static bool _isPaused;
 
         private readonly IReadOnlyList<Func<Scene>> _scenes = [
+            () => new LobbyPart2(),
+            () => new Lobby(),
+            () => new LobbyExample(),
             () => new GiftShopPart2(),
             () => new GiftShopPart2Example(),
             () => new GiftShop(),
