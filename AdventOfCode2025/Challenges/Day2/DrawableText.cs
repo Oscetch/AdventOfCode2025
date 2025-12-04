@@ -38,6 +38,19 @@ namespace AdventOfCode2025.Challenges.Day2
             Origin = Size.ToVector2() / 2;
         }
 
+        public DrawableText WithNewText(string text) 
+        {
+            return new DrawableText(_font, text)
+            {
+                Position = Position,
+                Scale = Scale,
+                Tint = Tint,
+                Rotation = Rotation,
+                Origin = Origin,
+                SpriteEffects = SpriteEffects,
+            };
+        }
+
         public void ScaleToSize(float size)
         {
             var s = Size;

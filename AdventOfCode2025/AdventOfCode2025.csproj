@@ -25,9 +25,11 @@
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.*" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
+    <PackageReference Include="Oscetch.MonoGame.Camera.GL" Version="1.0.1" />
     <PackageReference Include="Oscetch.MonoGame.Input.GL" Version="1.0.3" />
     <PackageReference Include="Oscetch.MonoGame.Math.GL" Version="1.0.3" />
     <PackageReference Include="Oscetch.MonoGame.Textures.GL" Version="1.0.6" />
+    <PackageReference Include="QTree.MonoGame.Common" Version="1.0.3" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Challenges\Day1\Day1_Part1.txt">
@@ -37,6 +39,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Challenges\Day3\data.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Challenges\Day4\data.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

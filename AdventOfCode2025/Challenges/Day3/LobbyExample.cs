@@ -145,7 +145,6 @@ namespace AdventOfCode2025.Challenges.Day3
 
             var indices = new List<int>();
             var values = new List<ulong>();
-            var indexesToValues = new List<(int index, ulong maxValue)>();
             var maxColor = Color.Purple;
             var minColor = Color.Blue;
 
@@ -167,7 +166,6 @@ namespace AdventOfCode2025.Challenges.Day3
                         continue;
                     }
                     wasCleared = true;
-                    var storedIndex = indices[j];
                     values[j] = actualValue;
                     indices[j] = i;
                     for (var k = j + 1; k < indices.Count; k++)

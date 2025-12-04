@@ -1,11 +1,14 @@
 ﻿using AdventOfCode2025.Challenges.Day1;
 using AdventOfCode2025.Challenges.Day2;
 using AdventOfCode2025.Challenges.Day3;
+using AdventOfCode2025.Challenges.Day4;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Oscetch.MonoGame.Input.Managers;
 using Oscetch.MonoGame.Input.Services;
+using Oscetch.MonoGame.Textures;
+using Oscetch.MonoGame.Textures.Enums;
 using System;
 using System.Collections.Generic;
 
@@ -16,12 +19,18 @@ namespace AdventOfCode2025
         public static readonly int Width = 1280;
         public static readonly int Height = 720;
 
+        public static Texture2D White { get; private set; }
+
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private KeyboardStateService _keyboard;
         private static bool _isPaused;
 
         private readonly IReadOnlyList<Func<Scene>> _scenes = [
+            () => new PrintingDepartmentPart2(),
+            () => new PrintingDepartmentPart2Example(),
+            () => new PrintingDepartment(),
+            () => new PrintingDepartmentExample(),
             () => new LobbyPart2(),
             () => new Lobby(),
             () => new LobbyExample(),
@@ -62,6 +71,8 @@ namespace AdventOfCode2025
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            var parameters = new CustomTextureParameters.CustomTextureParametersBuilder().WithShape(ShapeType.Rectangle).WithSize(1).WithFillColor(Color.White).Build();
+            White = CustomTextureManager.GetCustomTexture(parameters, GraphicsDevice);
             _currentScene = _scenes[0]();
             _currentScene.Initialize(Content, GraphicsDevice);
         }
