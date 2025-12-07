@@ -2,6 +2,7 @@
 using AdventOfCode2025.Challenges.Day2;
 using AdventOfCode2025.Challenges.Day3;
 using AdventOfCode2025.Challenges.Day4;
+using AdventOfCode2025.Challenges.Day5;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -27,6 +28,8 @@ namespace AdventOfCode2025
         private static bool _isPaused;
 
         private readonly IReadOnlyList<Func<Scene>> _scenes = [
+            () => new Cafeteria(),
+            () => new CafeteriaExample(),
             () => new PrintingDepartmentPart2(),
             () => new PrintingDepartmentPart2Example(),
             () => new PrintingDepartment(),
@@ -66,6 +69,7 @@ namespace AdventOfCode2025
         {
             base.Initialize();
             _keyboard = KeyboardManager.GetGeneral();
+            MouseManager.SetScreenSize(Width, Height);
         }
 
         protected override void LoadContent()
@@ -82,6 +86,7 @@ namespace AdventOfCode2025
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             KeyboardManager.Update();
+            MouseManager.Update();
             if (_keyboard.IsKeyClicked(Keys.Space)) 
             {
                 _currentSceneIndex = (_currentSceneIndex + 1) % _scenes.Count;
